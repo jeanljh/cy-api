@@ -1,0 +1,14 @@
+{
+  "name": "cy-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress run --record --key b96b00ea-4cc1-4d85-b7cb-dfe8ec6aba0b"
+  },
+  "author": "jean",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^9.5.0"
+  }
+}

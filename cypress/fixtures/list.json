@@ -1,0 +1,11 @@
+{
+    "id": "6173b854215e9259f7197de4",
+    "postbody": {
+        "name": "mypost",
+        "desc": "card for mypost"
+    },
+    "putbody": {
+        "name": "myput",
+        "desc": "card for myput"
+    }
+}
