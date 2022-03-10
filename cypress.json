@@ -1,5 +1,11 @@
 {
+  "projectId": "9b3ig2",
   "baseUrl": "https://api.trello.com/",
   "defaultCommandTimeout": 20000,
-  "projectId": "9b3ig2"
+  "screenshotOnRunFailure": false,
+  "video": false,
+  "reporter": "cypress-multi-reporters",
+  "reporterOptions": {
+    "configFile": "reporter-config.json"
+  }
 }

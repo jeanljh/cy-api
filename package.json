@@ -1,14 +1,23 @@
 {
-  "name": "cy-navigatecalendar",
+  "name": "cy-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "example of api test with cypress and mochawesome to generate test report",
   "main": "index.js",
   "scripts": {
-    "test": "cypress run --record --key b96b00ea-4cc1-4d85-b7cb-dfe8ec6aba0b"
+    "test": "cypress run",
+    "test:db": "cypress run --record --key b96b00ea-4cc1-4d85-b7cb-dfe8ec6aba0b",
+    "report:merge": "mochawesome-merge cypress/results/json/*.json > index.json",
+    "report:gen": "marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html",
+    "delete:json": "del-cli cypress/results/json/*",
+    "delete:report": "del-cli public/*"
   },
   "author": "jean",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^9.5.1"
+    "cypress": "^9.5.1",
+    "cypress-multi-reporters": "^1.5.0",
+    "del-cli": "^4.0.1",
+    "mochawesome": "^7.1.2",
+    "mochawesome-merge": "^4.2.1"
   }
 }
