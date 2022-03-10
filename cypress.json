@@ -1,7 +1,5 @@
 {
   "baseUrl": "https://api.trello.com/",
-  "viewportHeight": 1080,
-  "viewportWidth": 1920,
   "defaultCommandTimeout": 20000,
   "projectId": "9b3ig2"
 }
