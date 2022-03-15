@@ -1,3 +1,5 @@
+[![CI](https://github.com/jeanljh/cy-api/actions/workflows/main.yml/badge.svg)](https://github.com/jeanljh/cy-api/actions/workflows/main.yml)
+
 Example of API test with Cypress and Mochawesome to generate test report
 
 CI - GitHub Actions to run Cypress tests and GitHub Pages to publish the generated Mochawesome HTML report.
