@@ -16,6 +16,7 @@ describe('Trello API List Test Suite', () => {
             },
             failOnStatusCode: false
         }).then(res => {
+            cy.log(res.body.id)
             expect(res.status).to.eq(200)
             expect(res.body.name).to.eq(name)
             cy.request({
