@@ -14,7 +14,7 @@ describe('Trello API Comment Test Suite', () => {
                 key: auth.key,
                 token: auth.token
             },
-            failOnStatusCode: false,
+            failOnStatusCode: false
         })
         .its('body.id')
         .then(cardId => {
