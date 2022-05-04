@@ -1,0 +1,10 @@
+{
+    "postdata": {
+        "name": "postname",
+        "color": "yellow"
+    },
+    "putdata": {
+        "name": "putname",
+        "color": "purple"
+    }
+}
