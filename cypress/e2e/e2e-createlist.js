@@ -7,7 +7,7 @@ describe('Trello API List Test Suite', () => {
         const name = 'List_' + Math.random().toString(36).substring(5)
         cy.request({
             method: 'Post',
-            url: `/1/lists/`,
+            url: '/1/lists/',
             qs: {
                 name: name,
                 idBoard: board.id,
