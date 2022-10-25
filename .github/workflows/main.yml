@@ -15,16 +15,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/github-script@v6
+#       - uses: actions/github-script@v6
+#         with:
+#           github-token: ${{ secrets.PAT_TOKEN }}
+#           script: |
+#             await github.rest.actions.createWorkflowDispatch({
+#               owner: 'jeanljh',
+#               repo: 'cy-testframework',
+#               workflow_id: 'main.yml',
+#               ref: 'master'
+#             })
+
+      - name: Emit repository_dispatch
+        uses: mvasigh/dispatch-action@main
         with:
-          github-token: ${{ secrets.PAT_TOKEN }}
-          script: |
-            await github.rest.actions.createWorkflowDispatch({
-              owner: 'jeanljh',
-              repo: 'cy-testframework',
-              workflow_id: 'main.yml',
-              ref: 'master'
-            })
+          # You should create a personal access token and store it in your repository
+          token: ${{ secrets.PAT_TOKEN }}
+          repo: cy-testframework
+          owner: jeanljh
+          event_type: sample_push
             
       - name: Checkout
         uses: actions/checkout@v3.0.0
