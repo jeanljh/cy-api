@@ -11,6 +11,7 @@
     "delete:json": "del-cli cypress/results/json/*",
     "delete:report": "del-cli public/*"
   },
+  "keywords": ["cypress"],
   "author": "jean",
   "license": "ISC",
   "devDependencies": {
