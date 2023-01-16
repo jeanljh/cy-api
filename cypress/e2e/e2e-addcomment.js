@@ -8,7 +8,7 @@ describe('Trello API Comment Test Suite', () => {
         // post request - create card
         cy.request({
             method: 'post',
-            url: '1/cards/',
+            url: 'cards',
             qs: {
                 idList: list.id,
                 key: auth.key,
@@ -21,7 +21,7 @@ describe('Trello API Comment Test Suite', () => {
             // post request - add comment
             cy.request({
                 method: 'post',
-                url: `1/cards/${cardId}/actions/comments`,
+                url: `cards/${cardId}/actions/comments`,
                 qs: { 
                     text: comment.text,
                     key: auth.key,
@@ -34,7 +34,7 @@ describe('Trello API Comment Test Suite', () => {
                 // delete request - delete comment
                 cy.request({
                     method: 'Delete',
-                    url: `/1/cards/${cardId}/actions/${res.body.id}/comments`,
+                    url: `cards/${cardId}/actions/${res.body.id}/comments`,
                     qs: {
                         key: auth.key,
                         token: auth.token
@@ -45,7 +45,7 @@ describe('Trello API Comment Test Suite', () => {
             // delete request - delete card
             cy.request({
                 method: 'Delete',
-                url: `/1/cards/${cardId}`,
+                url: `cards/${cardId}`,
                 qs: {
                     key: auth.key,
                     token: auth.token

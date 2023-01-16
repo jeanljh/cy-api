@@ -7,7 +7,7 @@ describe('Trello API Card Test Suite', () => {
         // post request
         cy.request({
             method: 'post',
-            url: '1/cards/',
+            url: 'cards',
             qs: {
                 idList: list.id,
                 key: auth.key,
@@ -22,7 +22,7 @@ describe('Trello API Card Test Suite', () => {
 
             // get request
             cy.request({
-                url: `/1/cards/${res.body.id}`,
+                url: `cards/${res.body.id}`,
                 qs: {
                     key: auth.key,
                     token: auth.token
@@ -32,7 +32,7 @@ describe('Trello API Card Test Suite', () => {
             // put request
             cy.request({
                 method: 'put',
-                url: `1/cards/${res.body.id}`,
+                url: `cards/${res.body.id}`,
                 qs: {
                     key: auth.key,
                     token: auth.token
@@ -44,7 +44,7 @@ describe('Trello API Card Test Suite', () => {
             // delete request
             cy.request({
                 method: 'delete',
-                url: `/1/cards/${res.body.id}`,
+                url: `cards/${res.body.id}`,
                 qs: {
                     key: auth.key,
                     token: auth.token
@@ -54,7 +54,7 @@ describe('Trello API Card Test Suite', () => {
 
             // get request
             cy.request({
-                url: `/1/cards/${res.body.id}`,
+                url: `cards/${res.body.id}`,
                 qs: {
                     key: auth.key,
                     token: auth.token

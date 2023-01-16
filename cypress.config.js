@@ -18,7 +18,7 @@ module.exports = defineConfig({
         }
       })
     },
-    baseUrl: 'https://api.trello.com/',
+    baseUrl: 'https://api.trello.com/1/',
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',
   },
 })

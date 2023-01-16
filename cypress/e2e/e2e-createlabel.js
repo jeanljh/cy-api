@@ -8,7 +8,7 @@ describe('Trello API Label Test Suite', () => {
         // post request - add label
         cy.request({
             method: 'post',
-            url: `1/labels`,
+            url: 'labels',
             qs: {
                 name: label['postdata']['name'],
                 color: label['postdata']['color'],
@@ -22,7 +22,7 @@ describe('Trello API Label Test Suite', () => {
             expect(name).to.eq(label.postdata.name)
             expect(color).to.eq(label.postdata.color)
             // get request - get label
-            cy.request(`1/labels/${id}?key=${auth.key}&token=${auth.token}`)
+            cy.request(`labels/${id}?key=${auth.key}&token=${auth.token}`)
             .then(({status, body: {name, color}}) => {
                 expect(status).to.eq(200)
                 expect(name).to.eq(label.postdata.name)
@@ -31,7 +31,7 @@ describe('Trello API Label Test Suite', () => {
             // put request - update label
             cy.request({
                 method: 'put',
-                url: `1/labels/${id}`,
+                url: `labels/${id}`,
                 qs: {
                     name: label['putdata']['name'],
                     color: label['putdata']['color'],
@@ -45,7 +45,7 @@ describe('Trello API Label Test Suite', () => {
                 expect(color).to.eq(label.putdata.color)
             })
             // delete request - delete label
-            cy.request('delete', `1/labels/${id}?key=${auth.key}&token=${auth.token}`)
+            cy.request('delete', `labels/${id}?key=${auth.key}&token=${auth.token}`)
             .then(({status, body: {limits}}) => {
                 expect(status).to.eq(200)
                 expect(Object.values(limits).length).to.eq(0)

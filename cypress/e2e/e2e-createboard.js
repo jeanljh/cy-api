@@ -6,7 +6,7 @@ describe('Trello API Board Test Suite', () => {
     it('Test Post, Get, Put and Delete Board', () => {
         cy.request({
             method: 'Post',
-            url: '/1/boards',
+            url: 'boards',
             qs: {
                 key: auth.key,
                 token: auth.token,
@@ -20,7 +20,7 @@ describe('Trello API Board Test Suite', () => {
             expect(res.body.name).to.eq(board.name)
             cy.request({
                 method: 'Get',
-                url: `/1/boards/${res.body.id}`,
+                url: `boards/${res.body.id}`,
                 qs: {
                     key: auth.key,
                     token: auth.token
@@ -28,7 +28,7 @@ describe('Trello API Board Test Suite', () => {
             }).its('body.id').should('exist')
             cy.request({
                 method: 'Put',
-                url: `1/boards/${res.body.id}`,
+                url: `boards/${res.body.id}`,
                 qs: {
                     key: auth.key,
                     token: auth.token,
@@ -37,7 +37,7 @@ describe('Trello API Board Test Suite', () => {
             }).its('body.prefs.permissionLevel').should('contain', board.permissionLevel)
             cy.request({
                 method:'Delete', 
-                url: `/1/boards/${res.body.id}`,
+                url: `boards/${res.body.id}`,
                 qs: {
                     key: auth.key,
                     token: auth.token

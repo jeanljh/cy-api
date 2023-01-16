@@ -8,7 +8,7 @@ describe('Trello API Member Test Suite', () => {
         // put request - invite member
         cy.request({
             method: 'put',
-            url: `1/boards/${board.id}/members`,
+            url: `boards/${board.id}/members`,
             qs: {
                 email: member.email,
                 type: member.type,
@@ -26,7 +26,7 @@ describe('Trello API Member Test Suite', () => {
             // post request - delete member
             cy.request({
                 method: 'delete',
-                url: `1/boards/${board.id}/members/${idMember}`,
+                url: `boards/${board.id}/members/${idMember}`,
                 qs: {
                     key: auth.key,
                     token: auth.token

@@ -7,7 +7,7 @@ describe('Trello API List Test Suite', () => {
         const name = 'List_' + Math.random().toString(36).substring(5)
         cy.request({
             method: 'Post',
-            url: '/1/lists/',
+            url: 'lists',
             qs: {
                 name: name,
                 idBoard: board.id,
@@ -20,7 +20,7 @@ describe('Trello API List Test Suite', () => {
             expect(res.status).to.eq(200)
             expect(res.body.name).to.eq(name)
             cy.request({
-                url: `/1/boards/${board.id}/lists`,
+                url: `boards/${board.id}/lists`,
                 qs: {
                     key: auth.key,
                     token: auth.token
@@ -36,7 +36,7 @@ describe('Trello API List Test Suite', () => {
             })
             cy.request({
                 method: 'put',
-                url: `1/lists/${res.body.id}`,
+                url: `lists/${res.body.id}`,
                 qs: {
                     key: auth.key,
                     token: auth.token,
