@@ -14,7 +14,7 @@
   "author": "jean",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^12.3.0",
+    "cypress": "^12.6.0",
     "cypress-multi-reporters": "^1.6.2",
     "del-cli": "^5.0.0",
     "mochawesome": "^7.1.3",
