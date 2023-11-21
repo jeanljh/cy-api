@@ -1,6 +1,6 @@
 /// <reference types="cypress"/>
-import auth from "../fixtures/auth.json"
-import board from "../fixtures/board.json"
+import { key, token } from "../fixtures/auth.json"
+import { id as idBoard } from "../fixtures/board.json"
 
 describe('Trello API List Test Suite', () => {
     it('Test Post, Get and Update List', () => {
@@ -10,9 +10,9 @@ describe('Trello API List Test Suite', () => {
             url: 'lists',
             qs: {
                 name: name,
-                idBoard: board.id,
-                key: auth.key,
-                token: auth.token
+                idBoard,
+                key,
+                token
             },
             failOnStatusCode: false
         }).then(res => {
@@ -20,11 +20,8 @@ describe('Trello API List Test Suite', () => {
             expect(res.status).to.eq(200)
             expect(res.body.name).to.eq(name)
             cy.request({
-                url: `boards/${board.id}/lists`,
-                qs: {
-                    key: auth.key,
-                    token: auth.token
-                },
+                url: `boards/${idBoard}/lists`,
+                qs: { key, token },
                 failOnStatusCode: false
             }).its('body').then(body => {
                 for (const b of body) {
@@ -36,11 +33,8 @@ describe('Trello API List Test Suite', () => {
             })
             cy.request({
                 method: 'put',
-                url: `lists/${res.body.id}`,
-                qs: {
-                    key: auth.key,
-                    token: auth.token,
-                },
+                url: 'lists/' + res.body.id,
+                qs: { key, token },
                 body: {
                     closed: true
                 },

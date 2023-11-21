@@ -1,8 +1,9 @@
 const { defineConfig } = require('cypress')
+require('dotenv').config()
 
 module.exports = defineConfig({
-  projectId: '9b3ig2',
-  defaultCommandTimeout: 20000,
+  projectId: process.env.CYPRESS_PROJECT_ID,
+  defaultCommandTimeout: 10000,
   reporter: 'cypress-multi-reporters',
   reporterOptions: {
     configFile: 'reporter-config.json',

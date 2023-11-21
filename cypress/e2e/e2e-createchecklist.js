@@ -1,7 +1,7 @@
 /// <reference types='cypress'/>
 
 import { key, token } from '../fixtures/auth.json'
-import { id, postbody } from '../fixtures/list.json'
+import { id as idList, postbody as body } from '../fixtures/list.json'
 
 describe('Trello API Checklist Test Suite', () => {
     it('Test Post, Get, Put, Delete checklist', () => {
@@ -9,12 +9,8 @@ describe('Trello API Checklist Test Suite', () => {
         cy.request({
             method: 'post',
             url: 'cards',
-            qs: {
-                idList: id,
-                key,
-                token
-            },
-            body: postbody,
+            qs: { idList, key, token },
+            body,
             failOnStatusCode: false
         })
         /** another way */
@@ -24,16 +20,12 @@ describe('Trello API Checklist Test Suite', () => {
             expect(id).not.null.and.undefined.and.not.empty
             return id
         })
-        .then(id => {
+        .then(idCard => {
             /** post request - create a checklist */
             cy.request({
                 method: 'post',
                 url: 'checklists',
-                qs: {
-                    idCard: id,
-                    key,
-                    token
-                },
+                qs: { idCard, key, token },
                 failOnStatusCode: false
             })
             /** another way */
@@ -47,11 +39,8 @@ describe('Trello API Checklist Test Suite', () => {
         .then(id => {
             /** get request - get the checklist */
             cy.request({
-                url: `checklists/${id}`,
-                qs: {
-                    key,
-                    token
-                },
+                url: 'checklists/' + id,
+                qs: { key, token },
                 failOnStatusCode: false
             })
             /** another way */
@@ -63,13 +52,8 @@ describe('Trello API Checklist Test Suite', () => {
             const pos = 'top'
             cy.request({
                 method: 'put',
-                url: `checklists/${id}`,
-                qs: {
-                    key,
-                    token,
-                    name,
-                    pos
-                },
+                url: 'checklists/' + id,
+                qs: { key, token, name, pos },
                 failOnStatusCode: false
             })
             /** another way */
@@ -82,11 +66,8 @@ describe('Trello API Checklist Test Suite', () => {
                 /** delete request - delete checklist */
                 cy.request({
                     method: 'delete',
-                    url: `checklists/${id}`,
-                    qs: {
-                        key,
-                        token
-                    },
+                    url: 'checklists/' + id,
+                    qs: { key, token },
                     failOnStatusCode: false
                 })
                 /** another way */
@@ -99,11 +80,8 @@ describe('Trello API Checklist Test Suite', () => {
                 /** delete request - delete card */
                 cy.request({
                     method: 'delete',
-                    url: `cards/${idCard}`,
-                    qs: {
-                        key: key,
-                        token: token
-                    },
+                    url: 'cards/' + idCard,
+                    qs: { key, token },
                     failOnStatusCode: false
                 })
                 /** another way */

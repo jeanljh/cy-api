@@ -1,6 +1,6 @@
 /// <reference types="cypress"/>
-import auth from '../fixtures/auth.json'
-import list from '../fixtures/list.json'
+import { key, token } from '../fixtures/auth.json'
+import { id as idList } from '../fixtures/list.json'
 import comment from '../fixtures/comment.json'
 
 describe('Trello API Comment Test Suite', () => {
@@ -9,11 +9,7 @@ describe('Trello API Comment Test Suite', () => {
         cy.request({
             method: 'post',
             url: 'cards',
-            qs: {
-                idList: list.id,
-                key: auth.key,
-                token: auth.token
-            },
+            qs: { idList, key, token },
             failOnStatusCode: false
         })
         .its('body.id')
@@ -23,9 +19,9 @@ describe('Trello API Comment Test Suite', () => {
                 method: 'post',
                 url: `cards/${cardId}/actions/comments`,
                 qs: { 
-                    text: comment.text,
-                    key: auth.key,
-                    token: auth.token
+                    text: comment.text, 
+                    key, 
+                    token 
                 },
                 failOnStatusCode: false
             })
@@ -35,21 +31,15 @@ describe('Trello API Comment Test Suite', () => {
                 cy.request({
                     method: 'Delete',
                     url: `cards/${cardId}/actions/${res.body.id}/comments`,
-                    qs: {
-                        key: auth.key,
-                        token: auth.token
-                    },
+                    qs: { key, token },
                     failOnStatusCode: false
                 }).its('status').should('eq', 200)
             })
             // delete request - delete card
             cy.request({
                 method: 'Delete',
-                url: `cards/${cardId}`,
-                qs: {
-                    key: auth.key,
-                    token: auth.token
-                },
+                url: 'cards/' + cardId,
+                qs: { key, token },
                 failOnStatusCode: false
             }).its('status').should('eq', 200)
         })

@@ -1,15 +1,11 @@
-name: CI
+name: test
 
 on:
-  push:
-    branches:
-    - "*"
   pull_request:
-    branches:
-    - "*"
+    branches: master
+    # - "*"
   # schedule:
   #   - cron: '0 0 * * *' 
-
   workflow_dispatch:
   
 jobs:
@@ -18,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         
       - name: Remove json result files
         uses: JesseTG/rm@v1.0.2
@@ -26,7 +22,13 @@ jobs:
           path: ./cypress/results/json
         
       - name: Install and run Cypress tests
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
+        with:
+          record: true
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: true
       
       - name: Merge test results into one
@@ -36,6 +38,7 @@ jobs:
         run: npm run report:gen
         
       - name: Deploy report to GitHub pages
+        if: github.actor != 'dependabot[bot]'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,6 +1,6 @@
 /// <reference types='cypress' />
-import auth from '../fixtures/auth.json'
-import board from '../fixtures/board.json'
+import { key, token } from '../fixtures/auth.json'
+import { id as idBoard } from '../fixtures/board.json'
 import label from '../fixtures/label.json'
 
 describe('Trello API Label Test Suite', () => {
@@ -12,31 +12,32 @@ describe('Trello API Label Test Suite', () => {
             qs: {
                 name: label['postdata']['name'],
                 color: label['postdata']['color'],
-                idBoard: board.id,
-                key: auth['key'],
-                token: auth['token']
+                idBoard,
+                key,
+                token
             }
         }).then(({status, body: {id, name, color}}) => {
-            cy.log(id)
             expect(status).to.eq(200)
             expect(name).to.eq(label.postdata.name)
             expect(color).to.eq(label.postdata.color)
+            
             // get request - get label
-            cy.request(`labels/${id}?key=${auth.key}&token=${auth.token}`)
+            cy.request(`labels/${id}?key=${key}&token=${token}`)
             .then(({status, body: {name, color}}) => {
                 expect(status).to.eq(200)
                 expect(name).to.eq(label.postdata.name)
                 expect(color).to.eq(label.postdata.color)
             })
+            
             // put request - update label
             cy.request({
                 method: 'put',
-                url: `labels/${id}`,
+                url: 'labels/' + id,
                 qs: {
                     name: label['putdata']['name'],
                     color: label['putdata']['color'],
-                    key: auth.key,
-                    token: auth.token
+                    key,
+                    token
                 }
             })
             .then(({status, body: {name, color}}) => {
@@ -44,8 +45,9 @@ describe('Trello API Label Test Suite', () => {
                 expect(name).to.eq(label.putdata.name)
                 expect(color).to.eq(label.putdata.color)
             })
+            
             // delete request - delete label
-            cy.request('delete', `labels/${id}?key=${auth.key}&token=${auth.token}`)
+            cy.request('delete', `labels/${id}?key=${key}&token=${token}`)
             .then(({status, body: {limits}}) => {
                 expect(status).to.eq(200)
                 expect(Object.values(limits).length).to.eq(0)
