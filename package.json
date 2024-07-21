@@ -6,7 +6,7 @@
   "scripts": {
     "test": "cypress run",
     "test:cloud": "node set-env.js",
-    "test:full": "npm run delete:report && npm run delete:json && npm run test && npm run mocha-merge",
+    "test:full": "npm run delete:report && npm run delete:json && npm run test && npm run report:merge && npm run report:gen",
     "report:merge": "mochawesome-merge cypress/results/json/*.json > index.json",
     "report:gen": "marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html",
     "delete:json": "del-cli cypress/results/json/*",
