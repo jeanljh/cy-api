@@ -24,7 +24,7 @@
   "author": "jean",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.15.0",
+    "cypress": "^15.7.0",
     "cypress-multi-reporters": "^2.0.5",
     "del-cli": "^5.1.0",
     "dotenv": "^16.4.5",
