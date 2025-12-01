@@ -24,11 +24,11 @@
   "author": "jean",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.15.0",
-    "cypress-multi-reporters": "^1.6.4",
+    "cypress": "^15.7.0",
+    "cypress-multi-reporters": "^2.0.5",
     "del-cli": "^5.1.0",
     "dotenv": "^17.2.3",
-    "mochawesome": "^7.1.3",
+    "mochawesome": "^7.1.4",
     "mochawesome-merge": "^4.3.0"
   }
 }
